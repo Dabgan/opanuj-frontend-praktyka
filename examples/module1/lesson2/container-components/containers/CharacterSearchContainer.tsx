@@ -2,7 +2,7 @@ import CharacterList from '../components/CharacterList';
 import SearchForm from '../components/SearchForm';
 import SearchTitle from '../components/SearchTitle';
 import { useFetchCharacters } from '../hooks/useFetchCharacters';
-import { useSortedCharacters } from '../hooks/useSortedCharacters';
+import { useSortedCharacters } from '../hooks/useSortCharacters';
 
 const SEARCH_TITLE = 'Wyszukiwarka postaci Rick and Morty';
 

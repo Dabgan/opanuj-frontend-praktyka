@@ -3,9 +3,7 @@ import { Character } from '../types/Character';
 
 const BASE_API_URL = `https://rickandmortyapi.com/api/character/`;
 
-export const useFetchCharacters = () => {
-    const [name, setName] = useState('');
-    const [gender, setGender] = useState('');
+export const useFetchCharacters = (name: string, gender: string) => {
     const [characters, setCharacters] = useState<Character[]>([]);
 
     useEffect(() => {
@@ -17,5 +15,5 @@ export const useFetchCharacters = () => {
         }
     }, [name, gender]);
 
-    return { name, setName, gender, setGender, characters };
+    return characters;
 };

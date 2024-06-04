@@ -1,14 +1,19 @@
+import { useState } from 'react';
 import CharacterList from '../components/CharacterList';
 import SearchForm from '../components/SearchForm';
 import SearchTitle from '../components/SearchTitle';
 import { useFetchCharacters } from '../hooks/useFetchCharacters';
-import { useSortedCharacters } from '../hooks/useSortCharacters';
+import { sortCharacters } from '../utils/sortCharacters';
 
 const SEARCH_TITLE = 'Wyszukiwarka postaci Rick and Morty';
 
 function CharacterSearchContainer() {
-    const { name, setName, gender, setGender, characters } = useFetchCharacters();
-    const { sortOption, setSortOption, sortedCharacters } = useSortedCharacters(characters);
+    const [name, setName] = useState('');
+    const [gender, setGender] = useState('');
+    const [sortOption, setSortOption] = useState('');
+    const characters = useFetchCharacters(name, gender);
+    const sortedCharacters = sortCharacters(characters, sortOption);
+
     return (
         <>
             <div className="pt-20" />

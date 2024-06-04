@@ -1,9 +1,6 @@
-import { useState } from 'react';
 import { Character } from '../types/Character';
 
-export const useSortedCharacters = (characters: Character[]) => {
-    const [sortOption, setSortOption] = useState('');
-
+export const sortCharacters = (characters: Character[], sortOption: string) => {
     const sortedCharacters = [...characters].sort((a, b) => {
         if (sortOption === 'name') {
             return a.name.localeCompare(b.name);
@@ -13,5 +10,5 @@ export const useSortedCharacters = (characters: Character[]) => {
         return 0;
     });
 
-    return { sortOption, setSortOption, sortedCharacters };
+    return sortedCharacters;
 };

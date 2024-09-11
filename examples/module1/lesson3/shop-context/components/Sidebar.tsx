@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -13,8 +13,20 @@ interface SidebarProps {
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const ClearCartButton = memo(() => {
+  const { clearCart } = useContext(CartContext);
+  return (
+    <div
+      onClick={clearCart}
+      className="cursor-pointer py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl"
+    >
+      <FiTrash2 />
+    </div>
+  );
+});
+
 const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
-  const { cart, clearCart, itemAmount, total } = useContext(CartContext);
+  const { cart, itemAmount, total } = useContext(CartContext);
 
   return (
     <div
@@ -43,12 +55,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
           <div className="font-semibold">
             <span className="mr-2">Subtotal:</span> $ {total.toFixed(2)}
           </div>
-          <div
-            onClick={clearCart}
-            className="cursor-pointer py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl"
-          >
-            <FiTrash2 />
-          </div>
+          <ClearCartButton />
         </div>
         <Link
           to={'/'}
